@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Page 3: Ask for your favorite color{% endblock %}
+
+{% block content %}
+	<div class="container mt-3">
+	
+	
+	<form action ={{ url_for("renderPage4") }} method="POST">
+		
+		
+		
+
+	
+			<h2>How many seasons is the show currently?</h2>
+		  
+			<label for="browser" class="form-label">Choose your answer from the list</label>
+			<input class="form-control" list="seasons" name="season" id="season">
+			<datalist id="seasons">
+			  <option value="6">
+			  <option value="7">
+			  <option value="8">
+			  <option value="9">
+			  
+			  
+			</datalist>    
+			    
+	
+			<button type="submit" class="btn btn-primary mt-3">Submit</button>
+		  </form>
+		</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}Page 1{% endblock %}
+
+{% block content %}
+	<div class="container mt-3">
+	
+	
+	<form action ={{ url_for("renderPage2") }} method="POST">
+		
+		
+		
+
+	
+	  <h2>What year did the TV Show 'Suits' premier?</h2>
+		  
+			<label for="browser" class="form-label">Choose your answer from the list</label>
+			<input class="form-control" list="years" name="year" id="year">
+			
+			<datalist id="years">
+			<!-- <input type="text" name="year> -->
+			  <option value="0">{{answers[0]}}</option>
+			  <option value="1">{{answers[1]}}</option>
+			  <option value="2">{{answers[2]}}</option>
+			  <option value="3">{{answers[3]}}</option>
+			  
+			</datalist>    
+			
+		  
+		
+		
+	
+	
+	
+		 
+		
+	
+	
+	  <!-- <h2>How many people are going?</h2> -->
+		  
+			<!-- <label for="browser" class="form-label">Choose from the list:</label> -->
+			<!-- <input class="form-control" list="persons" name="person" id="person"> -->
+			<!-- <datalist id="persons"> -->
+			  <!-- <option value="1 person"> -->
+			  <!-- <option value="2 people"> -->
+			  <!-- <option value="3-4 people"> -->
+			  <!-- <option value="4-8 people"> -->
+			  
+			<!-- </datalist>     -->
+			<button type="submit" class="btn btn-primary mt-3">Submit</button>
+		  </form>
+		</div>
+{% endblock %}
