@@ -2,11 +2,16 @@ import os
 from flask import Flask, url_for, render_template, request
 from flask import redirect
 from flask import session
-import json
 
-app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
+app = Flask(__name__)
 
-app.secret_key=os.environ["secret_key"]; 
+# In order to use "sessions",you need a "secret key".
+# This is something random you generate.  
+# For more info see: https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY
+
+app.secret_key=os.environ["SECRET_KEY"]; #This is an environment variable.  
+                                     #The value should be set on the server. 
+                                     #To run locally, set in env.bat (env.sh on Macs) and include that file in gitignore so the secret key is not made public.
 
 @app.route('/')
 def renderMain():
@@ -19,34 +24,37 @@ def startOver():
 
 @app.route('/page1')
 def renderPage1():
-    with open("questions.json") as data:
-        questions = json.load(data)
-        
-    # session["lastName"]=request.form['lastName']
-    return render_template('page1.html', answers = questions[0]["Answers"])
-
+    return render_template('page1.html')
 
 @app.route('/page2',methods=['GET','POST'])
 def renderPage2():
-    with open("questions.json") as data:
-        questions = json.load(data)
+    # with open("questions.json") as data:
+        # questions = json.load(data)
+    
+   
         
     session["year"]=request.form['year']
+    
     # session["lastName"]=request.form['lastName']
-    return render_template('page2.html', answers = questions[1]["Answers"])
+    return render_template('page2.html')
+    # answers = questions[1]["Answers"]
 
 @app.route('/page3',methods=['GET','POST'])
 def renderPage3():
     # session["favoriteColor"]=request.form['favoriteColor']
     return render_template('page3.html')
-    
+
 @app.route('/page4',methods=['GET','POST'])
 def renderPage4():
     # session["favoriteColor"]=request.form['favoriteColor']
-    return render_template('page4.html')
+    return render_template('page4.html', count = amount())
 def amount():
-    count = ""
     
-
+    count = 0
+    if session['year'] == "2009":
+        count+=1
+        
+   
+    return count
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
