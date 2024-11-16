@@ -1,13 +1,20 @@
 {% extends "layout.html" %}
 
-{% block title %}Page 4--Now we know everything!{% endblock %}
+{% block title %}Page 4{% endblock %}
 
 {% block content %}
-  <h1>Now I know:</h1>
+	<div class="container mt-3">
+		<div class="progress">
+				<div class="progress-bar" style="width:100%"></div>
+		</div>
+	<br>
+  <h1 class = "margin">Your Answers:</h1>
 
 <!-- <ul> -->
- <li> Your first name is: {{ count }} </li>
- 
+ <li class = "margin">You got {{ count }} out of 3 correct.</li>
+ <li class = "margin">You got the first question {{ first }}. </li>
+ <li class = "margin">You got the second question {{ second }}. </li>
+ <li class = "margin">You got the third question {{ third }}. </li>
  <!-- <li> Your first name is: {{ session['year'] }} </li> -->
  <!-- <li> Your last name is: {{ session['lastName'] }} </li> -->
  <!-- <li> Your favorite color is: {{ session['favoriteColor'] }} </li> -->

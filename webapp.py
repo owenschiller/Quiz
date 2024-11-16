@@ -3,6 +3,7 @@ from flask import Flask, url_for, render_template, request
 from flask import redirect
 from flask import session
 
+
 app = Flask(__name__)
 
 # In order to use "sessions",you need a "secret key".
@@ -24,6 +25,7 @@ def startOver():
 
 @app.route('/page1')
 def renderPage1():
+    # session["year"]=request.form['year']
     return render_template('page1.html')
 
 @app.route('/page2',methods=['GET','POST'])
@@ -41,20 +43,48 @@ def renderPage2():
 
 @app.route('/page3',methods=['GET','POST'])
 def renderPage3():
-    # session["favoriteColor"]=request.form['favoriteColor']
+    session["firm"]=request.form['firm']
     return render_template('page3.html')
 
 @app.route('/page4',methods=['GET','POST'])
 def renderPage4():
-    # session["favoriteColor"]=request.form['favoriteColor']
-    return render_template('page4.html', count = amount())
-def amount():
-    
-    count = 0
-    if session['year'] == "2009":
-        count+=1
-        
+    session["season"]=request.form['season']
+    answer1 = ""
+    answer2 = ""
+    answer3 = ""
+    correct = 0
+    if session['year'] == "2011":
+        correct+=1
+        answer1 = "correct"
+    else: answer1 = "incorrect"
+    if session['firm'] == "Pearson Hardman":
+        correct+=1
+        answer2 = "correct"
+    else: answer2 = "incorrect"
+    if session['season'] == "9":
+        correct+= 1
+        answer3 = "correct"
+    else: answer3 = "incorrect"
    
-    return count
+    # return correct
+    # return answer1
+    
+    return render_template('page4.html', count = correct, first = answer1, second = answer2, third = answer3)
+# def amount():
+    # answer1 = ""
+    # answer2 = ""
+    # answer3 = ""
+    # correct = 0
+    # if session['year'] == "2011":
+        # correct+=1
+        # answer1 = "correct"
+    # else: answer1 = "incorrect"
+    # if session['firm'] == "Pearson Hardman":
+        # correct+=1
+    # if session['season'] == "9":
+        # correct+= 1
+   
+    # return correct
+    # return answer1
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)
